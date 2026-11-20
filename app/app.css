@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Fonts: self-hosted, font-display: swap, unicode-range subsets (only used weights). */
+@import "@fontsource-variable/readex-pro/wght.css";
+@import "@fontsource/kufam/arabic-400.css";
+@import "@fontsource/kufam/latin-400.css";
+@import "@fontsource/kufam/arabic-600.css";
+@import "@fontsource/kufam/latin-600.css";
+@import "@fontsource/kufam/arabic-700.css";
+@import "@fontsource/kufam/latin-700.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — "The calm harbor"                                   */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --surface: #f7f5f0;
+  --surface-raised: #ffffff;
+  --surface-sunken: #efebe3;
+  --line: #e3ded4;
+  --line-strong: #8c95a3;
+  --ink: #0f1b2d;
+  --ink-muted: #5a6576;
+  --on-ink: #f7f5f0;
+  --harbor: #163a63;
+  --harbor-soft: #dce6f2;
+  --buoy: #e5532d;
+  --buoy-strong: #c2431f;
+  --sand: #e9e1d2;
+  --safe: #1f7a55;
+  --caution: #9a6412;
+  --danger: #b4232f;
+  --float-shadow: 0 8px 24px rgba(15, 27, 45, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface: #0d1522;
+    --surface-raised: #152033;
+    --surface-sunken: #09101b;
+    --line: #24324a;
+    --line-strong: #5e6e86;
+    --ink: #eef1f5;
+    --ink-muted: #9aa6b8;
+    --on-ink: #0d1522;
+    --harbor: #a9c7ea;
+    --harbor-soft: #1b2c45;
+    --buoy: #ff7a52;
+    --buoy-strong: #ff7a52;
+    --sand: #1e2a3d;
+    --safe: #5bc79a;
+    --caution: #e9b04a;
+    --danger: #ff6b6b;
+    --float-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #0d1522;
+  --surface-raised: #152033;
+  --surface-sunken: #09101b;
+  --line: #24324a;
+  --line-strong: #5e6e86;
+  --ink: #eef1f5;
+  --ink-muted: #9aa6b8;
+  --on-ink: #0d1522;
+  --harbor: #a9c7ea;
+  --harbor-soft: #1b2c45;
+  --buoy: #ff7a52;
+  --buoy-strong: #ff7a52;
+  --sand: #1e2a3d;
+  --safe: #5bc79a;
+  --caution: #e9b04a;
+  --danger: #ff6b6b;
+  --float-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-surface: var(--surface);
+  --color-raised: var(--surface-raised);
+  --color-sunken: var(--surface-sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-on-ink: var(--on-ink);
+  --color-harbor: var(--harbor);
+  --color-harbor-soft: var(--harbor-soft);
+  --color-buoy: var(--buoy);
+  --color-buoy-strong: var(--buoy-strong);
+  --color-sand: var(--sand);
+  --color-safe: var(--safe);
+  --color-caution: var(--caution);
+  --color-danger: var(--danger);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Fixed palette for the always-dark "Night" page template. */
+  --color-night: #0d1522;
+  --color-night-raised: #152033;
+  --color-night-line: #24324a;
+  --color-night-ink: #eef1f5;
+  --color-night-muted: #9aa6b8;
+
+  --font-sans: "Readex Pro Variable", "Readex Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Kufam", "Readex Pro Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-float: var(--float-shadow);
+
+  --text-display: 56px;
+  --text-display--line-height: 64px;
+  --text-h1: 36px;
+  --text-h1--line-height: 44px;
+  --text-h2: 26px;
+  --text-h2--line-height: 34px;
+  --text-h3: 20px;
+  --text-h3--line-height: 28px;
+  --text-body: 16px;
+  --text-body--line-height: 28px;
+  --text-small: 14px;
+  --text-small--line-height: 22px;
+  --text-micro: 12px;
+  --text-micro--line-height: 18px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    background: var(--surface);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 88px;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 28px;
+    background: var(--surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--harbor-soft);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--harbor);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  /* Latin/numeric runs inside Arabic text keep their own direction. */
+  .ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                           */
+/* ------------------------------------------------------------------ */
+@utility container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (width >= 640px) {
+    padding-inline: 24px;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 32px;
+  }
+}
+
+@utility tracking-wide-mark {
+  letter-spacing: 0.32em;
+}
+
+/* Scroll reveal — only applied when JS has run and motion is allowed. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 220ms var(--ease-out),
+      transform 220ms var(--ease-out);
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Navy band: dark tokens are scoped via data-theme="dark" on the section. */
+.band-dark {
+  background: #0d1522;
+  color: var(--ink);
+}
+:root[data-theme="dark"] .band-dark {
+  background: #09101b;
+}
+
+/* details/summary FAQ */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Dialog sheet animation */
+@media (prefers-reduced-motion: no-preference) {
+  .sheet-enter {
+    animation: sheet-in 200ms var(--ease-out);
+  }
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .fade-enter {
+    animation: fade-in 160ms var(--ease-out);
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+}
