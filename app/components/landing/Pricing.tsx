@@ -35,7 +35,7 @@ export function Pricing() {
               >
                 {p[b]}
                 {b === "yearly" ? (
-                  <span dir="ltr" className="ms-2 font-mono text-micro text-safe">
+                  <span dir="ltr" className="ms-2 font-mono text-micro font-medium text-harbor">
                     {p.yearlySave}
                   </span>
                 ) : null}

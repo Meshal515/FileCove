@@ -119,7 +119,7 @@ export function SiteHeader() {
       }`}
     >
       <div className="container-page flex h-16 items-center gap-4">
-        <Link to={home} aria-label={t.a11y.home} className="-mx-1 rounded-md px-1 py-1">
+        <Link to={home} className="-mx-1 rounded-md px-1 py-1">
           <Logo locale={locale} size="sm" />
         </Link>
 

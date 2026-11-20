@@ -95,15 +95,15 @@ function FooterCol({
   return (
     <div>
       <p className="text-small font-medium">{title}</p>
-      <ul className="mt-4 space-y-2.5">
+      <ul className="mt-3 space-y-1">
         {links.map((l) => (
           <li key={l.to}>
             {anchors ? (
-              <a href={l.to} className="text-small text-muted hover:text-ink">
+              <a href={l.to} className="inline-block py-1 text-small text-muted hover:text-ink">
                 {l.label}
               </a>
             ) : (
-              <Link to={l.to} className="text-small text-muted hover:text-ink">
+              <Link to={l.to} className="inline-block py-1 text-small text-muted hover:text-ink">
                 {l.label}
               </Link>
             )}
